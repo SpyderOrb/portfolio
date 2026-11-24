@@ -6,7 +6,7 @@ Local draft for SpyderOrb/portfolio. Open index.html directly or serve this dire
 
 The Direction section proposes technical support or NOC operations as the next step, continued web work alongside it, and ownership and visible usefulness as criteria for the projects Alex wants to pursue. The section marks this wording as a draft.
 
-The Open orbit concept is the provisional mark. All three concepts are in [the contact sheet](brand/concepts.png).
+The portfolio uses the AP monogram with a shaded shared stem. The flat favicon keeps the same silhouette at small sizes.
 
 ## Project sources
 

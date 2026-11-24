@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">AP monogram</title>
+  <defs>
+    <path id="stem" fill-rule="evenodd" d="M20 211 64.48 45H139v166h-31v-39H62.45L52 211zM70 145h38V75H88.76z"/>
+    <path id="bowl" d="M138 45h61l36 36v44l-36 36h-61v-29h49l19-19V93l-19-19h-49z"/>
+  </defs>
+  <g fill="#3B3179" fill-opacity=".11" transform="translate(9 11)">
+    <use href="#stem"/>
+    <use href="#bowl"/>
+  </g>
+  <g fill="#3B3179" fill-opacity=".10" transform="translate(5 6)">
+    <use href="#stem"/>
+    <use href="#bowl"/>
+  </g>
+  <use href="#stem" fill="#3B3179"/>
+  <use href="#bowl" fill="#16806F"/>
+  <path fill="#3B3179" fill-opacity=".21" d="M138 45h15v29h-15zM138 132h15v29h-15z"/>
+</svg>
