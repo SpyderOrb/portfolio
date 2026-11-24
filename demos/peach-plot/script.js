@@ -1,0 +1,551 @@
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const conserveMedia = reduceMotion || navigator.connection?.saveData;
+
+const translations = {
+  en: {
+    pageTitle: 'The Peach Plot — Raised close to home',
+    description: 'A small family peach orchard in Kherson Oblast, raised by two brothers on the wide southern steppe.',
+    languageSwitch: 'Switch language to Ukrainian',
+    skip: 'Skip to content',
+    brandHome: 'The Peach Plot, home',
+    primaryNav: 'Primary navigation',
+    menuToggle: 'Open navigation',
+    menuClose: 'Close navigation',
+    navStory: 'Our story',
+    navSeason: 'The season',
+    navPeople: 'The brothers',
+    planVisit: 'Plan a visit',
+    heroEyebrow: 'Kherson steppe · Family grown',
+    heroLineOne: 'Peaches, raised',
+    heroLineTwo: 'close to home.',
+    heroBottom: 'Two brothers. One modest plot.<br />Every tree known by heart.',
+    readStory: 'Read our story',
+    heroSide: 'Harvest notes / 01',
+    plotIndex: '01 / THE PLOT',
+    plotLead: 'Good fruit has nowhere to hide.',
+    plotTitle: 'Our fertile ground and their daily work meet in a peach that is <em>sweet, fragrant, and alive.</em>',
+    plotBody: 'The orchard sits close to the family home in Kherson Oblast, where fertile ground meets the wide, open southern steppe. Small enough to care for closely, large enough to keep two brothers busy every day.',
+    seeHow: 'See how we grow',
+    seasonIndex: '02 / THE SEASON',
+    seasonTitle: 'Care, repeated<br /><em>until it tastes right.</em>',
+    orchardVideo: 'A slow walk past peach trees in the family orchard',
+    rowsCaption: 'In the rows / late summer',
+    careOneTitle: 'Fertilize with purpose',
+    careOneBody: 'Good fruit starts below the surface. The soil and every tree are fed at the right stage, giving roots the nutrients they need without wasting what the land provides.',
+    careTwoTitle: 'Protect the trees',
+    careTwoBody: 'Disease and pests never take a season off. The orchard is watched constantly, then treated with the right crop protection at the right moment — carefully measured and never used blindly.',
+    careThreeTitle: 'Watch the water',
+    careThreeBody: 'Heat changes quickly here. Irrigation is checked, adjusted, and checked again so the roots receive what they need, when they need it.',
+    careFourTitle: 'Prune & thin',
+    careFourBody: 'Branches are opened to light and crowded fruit is thinned by hand. Fewer peaches on the tree means more strength, sweetness, and size in each one.',
+    careFiveTitle: 'Pick by hand',
+    careFiveBody: 'Color is only the first clue. A peach is ready when it gives just enough beneath your thumb.',
+    careSixTitle: 'Read the weather',
+    careSixBody: 'Forecasts, wind, heat, and humidity shape each day’s work. Plans change early, before the open steppe weather has a chance to do harm.',
+    journalIndex: 'FIELD NOTES / A YEAR IN THE ORCHARD',
+    journalTitle: 'Every peach has a before.',
+    journalIntro: 'Four chapters, one tree. Follow the quiet work that leads to a full basket.',
+    journalSketch: 'From the orchard notebook',
+    journalChoose: 'Choose a chapter of the orchard year',
+    journalBlossom: 'Blossom',
+    journalGrowing: 'Growing',
+    journalHarvest: 'Harvest',
+    journalRest: 'Rest',
+    journalBlossomNote: '01 / THE FIRST PROMISE',
+    journalBlossomTitle: 'Before the fruit, a flower.',
+    journalBlossomBody: 'The branches begin again in pink. The basket is still a long way off; for now, the work is to watch the trees and keep an eye on the changing weather.',
+    journalBlossomDetail: 'In the notebook: flowers, forecasts, a fresh start.',
+    journalGrowingNote: '02 / THE EVERYDAY WORK',
+    journalGrowingTitle: 'Room to grow. Time to care.',
+    journalGrowingBody: 'Leaves fill the branches and small green peaches take shape. Water is checked, crowded fruit is thinned, and the brothers return to the same rows, day after day.',
+    journalGrowingDetail: 'In the notebook: water, space, patience.',
+    journalHarvestNote: '03 / THE FULL BASKET',
+    journalHarvestTitle: 'Picked when the peach says so.',
+    journalHarvestBody: 'Color, fragrance, a little give beneath the fingers. The fruit sets the pace, and picking happens by hand. This is the chapter you can taste.',
+    journalHarvestDetail: 'In the notebook: gentle hands, full baskets, juice on your chin.',
+    journalRestNote: '04 / THE QUIET CHAPTER',
+    journalRestTitle: 'An empty branch is a beginning.',
+    journalRestBody: 'The baskets are put away and the orchard grows quiet. There are tools to mend and notes to revisit before the story begins again with a flower.',
+    journalRestDetail: 'In the notebook: repairs, reflection, next year.',
+    proofIndex: '03 / THE PROOF',
+    proofTitle: 'No slogans.<br /><em>Just take a bite.</em>',
+    biteAlt: 'A freshly bitten yellow peach showing its juicy flesh',
+    biteCaption: 'Juice on your hands',
+    biteNote: 'The honest quality test',
+    quote: 'There is not much to add. Come and taste it for yourself.',
+    quoteBy: '— The family rule',
+    bucketsAlt: 'Two large buckets filled with freshly picked yellow and red peaches',
+    harvestCaption: 'Today’s pick',
+    harvestNote: 'Never waiting in a warehouse',
+    brothersAlt: 'Igor and Vitalii shaking hands in their peach orchard',
+    peopleIndex: '04 / THE BROTHERS',
+    peopleNames: 'Igor & Vitalii',
+    peopleIntro: 'Brothers, growers, and the two pairs of hands behind every harvest.',
+    peopleBodyOne: 'They fertilize, water, prune, mend, carry, and begin again the next morning. The work is ordinary. The care is not.',
+    peopleBodyTwo: 'This orchard was never designed to be the biggest. It was built to produce something the family would be proud to put on its own table.',
+    signatureLabel: 'Igor and Vitalii, since day one',
+    nameIgor: 'Igor',
+    nameVitalii: 'Vitalii',
+    visitEyebrow: 'When the peaches are ready',
+    visitTitle: 'Come by.<br /><em>Leave convinced.</em>',
+    visitBody: 'Visits are simple and personal, just like the orchard. Let us know before you set out.',
+    footerTagline: 'Kherson Oblast.<br />On the wide southern steppe.',
+    footerSeason: 'Family grown',
+    footerVisits: 'Picked by hand in season',
+    closeForm: 'Close visit form',
+    dialogEyebrow: 'A good day out',
+    dialogTitle: 'Come meet the orchard.',
+    dialogBody: 'Leave your details and the family will help arrange a time during harvest season.',
+    formName: 'Name',
+    namePlaceholder: 'Your name',
+    formEmail: 'Email',
+    emailPlaceholder: 'you@example.com',
+    formReason: 'What brings you by?',
+    messagePlaceholder: 'A family visit, a box of peaches…',
+    sendNote: 'Send a visit note',
+    formNote: 'Portfolio demo — no message is transmitted.',
+    successTitle: 'We’ll save you a peach.',
+    successBody: 'Thanks for the note. In a live version, this would now reach the orchard.',
+    close: 'Close',
+    pauseVideos: 'Pause videos',
+    playVideos: 'Play videos',
+  },
+  uk: {
+    pageTitle: 'The Peach Plot — Персики, вирощені поруч із домом',
+    description: 'Невеликий родинний персиковий сад у Херсонській області, який двоє братів вирощують серед просторого південного степу.',
+    languageSwitch: 'Перемкнути мову на англійську',
+    skip: 'Перейти до вмісту',
+    brandHome: 'The Peach Plot, головна',
+    primaryNav: 'Головна навігація',
+    menuToggle: 'Відкрити навігацію',
+    menuClose: 'Закрити навігацію',
+    navStory: 'Наша історія',
+    navSeason: 'Сезон',
+    navPeople: 'Брати',
+    planVisit: 'Запланувати візит',
+    heroEyebrow: 'Херсонський степ · Родинна справа',
+    heroLineOne: 'Персики, вирощені',
+    heroLineTwo: 'поруч із домом.',
+    heroBottom: 'Два брати. Один невеликий сад.<br />Кожне дерево знають напам’ять.',
+    readStory: 'Прочитати нашу історію',
+    heroSide: 'Нотатки врожаю / 01',
+    plotIndex: '01 / САД',
+    plotLead: 'Якісний плід нічого не приховає.',
+    plotTitle: 'Наша родюча земля та їхня щоденна праця поєднуються в персику — <em>солодкому, духмяному й живому.</em>',
+    plotBody: 'Сад розташований неподалік від родинного дому в Херсонській області — там, де родюча земля зустрічається з простором безкрайніх південних степів. Достатньо малий, щоб дбати про кожне дерево, і достатньо великий, щоб щодня давати роботу двом братам.',
+    seeHow: 'Погляньте, як ми вирощуємо',
+    seasonIndex: '02 / СЕЗОН',
+    seasonTitle: 'Догляд, день за днем<br /><em>до правильного смаку.</em>',
+    orchardVideo: 'Повільна прогулянка поміж персикових дерев у родинному саду',
+    rowsCaption: 'Поміж рядами / кінець літа',
+    careOneTitle: 'Удобрювати з розумом',
+    careOneBody: 'Добрий плід починається під землею. Ґрунт і кожне дерево отримують поживні речовини у правильний момент — рівно стільки, скільки потрібно корінню.',
+    careTwoTitle: 'Захищати дерева',
+    careTwoBody: 'Хвороби й шкідники не мають вихідних. За садом постійно спостерігають і вчасно застосовують правильний захист — точно відміряний, а не використаний навмання.',
+    careThreeTitle: 'Стежити за водою',
+    careThreeBody: 'Спека тут змінюється швидко. Полив перевіряють, налаштовують і перевіряють знову, щоб коріння отримало потрібну кількість води у потрібний час.',
+    careFourTitle: 'Обрізати й проріджувати',
+    careFourBody: 'Гілки відкривають сонцю, а надто густі плоди проріджують вручну. Менше персиків на дереві — більше сили, солодкості й розміру в кожному.',
+    careFiveTitle: 'Збирати вручну',
+    careFiveBody: 'Колір — лише перша ознака. Персик готовий, коли м’яко піддається під пальцями.',
+    careSixTitle: 'Зважати на погоду',
+    careSixBody: 'Прогноз, вітер, спека й вологість визначають щоденну роботу. План змінюють завчасно, перш ніж погода відкритого степу встигне нашкодити.',
+    journalIndex: 'НОТАТКИ / РІК У САДУ',
+    journalTitle: 'Кожен персик має свою передісторію.',
+    journalIntro: 'Чотири розділи, одне дерево. Пройдіть шлях щоденної турботи до повного кошика.',
+    journalSketch: 'Із садового записника',
+    journalChoose: 'Оберіть розділ садового року',
+    journalBlossom: 'Цвітіння',
+    journalGrowing: 'Ріст',
+    journalHarvest: 'Урожай',
+    journalRest: 'Спокій',
+    journalBlossomNote: '01 / ПЕРША НАДІЯ',
+    journalBlossomTitle: 'Спочатку квітка, потім плід.',
+    journalBlossomBody: 'Гілки знову вкриваються рожевим цвітом. До повного кошика ще далеко. А поки — спостерігати за деревами й уважно стежити за мінливою погодою.',
+    journalBlossomDetail: 'У записнику: квіти, прогнози, новий початок.',
+    journalGrowingNote: '02 / ЩОДЕННА ПРАЦЯ',
+    journalGrowingTitle: 'Простір для росту. Час для турботи.',
+    journalGrowingBody: 'Гілки вкриваються листям, з’являються маленькі зелені персики. Полив перевіряють, густі плоди проріджують, а брати щодня повертаються до тих самих рядів.',
+    journalGrowingDetail: 'У записнику: вода, простір, терпіння.',
+    journalHarvestNote: '03 / ПОВНИЙ КОШИК',
+    journalHarvestTitle: 'Час збору підказує сам персик.',
+    journalHarvestBody: 'Колір, аромат, легка м’якість під пальцями. Плоди задають темп, а збирають їх вручну. Це розділ, який можна скуштувати.',
+    journalHarvestDetail: 'У записнику: дбайливі руки, повні кошики, сік на підборідді.',
+    journalRestNote: '04 / ТИХИЙ РОЗДІЛ',
+    journalRestTitle: 'Гола гілка — теж початок.',
+    journalRestBody: 'Кошики прибрано, у саду стає тихо. Час полагодити інструменти й перечитати нотатки, перш ніж історія знову почнеться з квітки.',
+    journalRestDetail: 'У записнику: ремонт, роздуми, наступний рік.',
+    proofIndex: '03 / ДОКАЗ',
+    proofTitle: 'Без гасел.<br /><em>Просто скуштуйте.</em>',
+    biteAlt: 'Свіжий надкушений жовтий персик із соковитою м’якоттю',
+    biteCaption: 'Сік на долонях',
+    biteNote: 'Найчесніша перевірка якості',
+    quote: 'Тут нічого додати. Приїжджайте й переконайтеся самі.',
+    quoteBy: '— Родинне правило',
+    bucketsAlt: 'Два великі відра зі свіжозібраними жовто-червоними персиками',
+    harvestCaption: 'Сьогоднішній збір',
+    harvestNote: 'Без очікування на складі',
+    brothersAlt: 'Ігор і Віталій тиснуть руки у своєму персиковому саду',
+    peopleIndex: '04 / БРАТИ',
+    peopleNames: 'Ігор і Віталій',
+    peopleIntro: 'Брати, садівники й дві пари рук за кожним урожаєм.',
+    peopleBodyOne: 'Вони удобрюють, поливають, обрізають, ремонтують, носять — і наступного ранку починають знову. Робота звичайна. Турбота — ні.',
+    peopleBodyTwo: 'Цей сад ніколи не мав бути найбільшим. Його створили, щоб вирощувати те, що родина з гордістю поставить на власний стіл.',
+    signatureLabel: 'Ігор і Віталій, разом від самого початку',
+    nameIgor: 'Ігор',
+    nameVitalii: 'Віталій',
+    visitEyebrow: 'Коли персики дозріли',
+    visitTitle: 'Завітайте.<br /><em>І переконайтеся.</em>',
+    visitBody: 'Візити тут прості й особисті — як сам сад. Повідомте нам, перш ніж вирушати.',
+    footerTagline: 'Херсонська область.<br />Серед просторого південного степу.',
+    footerSeason: 'Вирощено родиною',
+    footerVisits: 'Зібрано вручну в сезон',
+    closeForm: 'Закрити форму візиту',
+    dialogEyebrow: 'Гарний день у саду',
+    dialogTitle: 'Познайомтеся із садом.',
+    dialogBody: 'Залиште свої дані, і родина допоможе узгодити час візиту протягом сезону врожаю.',
+    formName: 'Ім’я',
+    namePlaceholder: 'Ваше ім’я',
+    formEmail: 'Електронна пошта',
+    emailPlaceholder: 'you@example.com',
+    formReason: 'З якою метою хочете завітати?',
+    messagePlaceholder: 'Родинний візит, ящик персиків…',
+    sendNote: 'Надіслати запит',
+    formNote: 'Демонстрація для портфоліо — повідомлення не надсилається.',
+    successTitle: 'Збережемо для вас персик.',
+    successBody: 'Дякуємо за повідомлення. У робочій версії воно вже надійшло б до саду.',
+    close: 'Закрити',
+    pauseVideos: 'Призупинити відео',
+    playVideos: 'Відтворити відео',
+  },
+};
+
+const languageToggle = document.querySelector('[data-language-toggle]');
+const mediaToggle = document.querySelector('[data-media-toggle]');
+const mediaToggleLabel = mediaToggle?.querySelector('[data-media-toggle-label]');
+let mediaPlaybackEnabled = !conserveMedia;
+
+const normalizeLanguage = (language) => {
+  const baseLanguage = language?.trim().toLowerCase().split('-')[0];
+  return Object.hasOwn(translations, baseLanguage) ? baseLanguage : null;
+};
+
+try {
+  if (localStorage.getItem('peach-orchard-media') === 'paused') mediaPlaybackEnabled = false;
+} catch {}
+
+const updateMediaToggleLabel = () => {
+  const copy = translations[document.documentElement.lang] || translations.en;
+  const label = mediaPlaybackEnabled ? copy.pauseVideos : copy.playVideos;
+  mediaToggleLabel?.replaceChildren(label);
+  if (mediaToggle) mediaToggle.dataset.paused = String(!mediaPlaybackEnabled);
+  if (mediaToggle) mediaToggle.title = label;
+};
+
+const applyLanguage = (language, { persist = true } = {}) => {
+  const nextLanguage = normalizeLanguage(language) || 'en';
+  const copy = translations[nextLanguage];
+
+  document.documentElement.lang = nextLanguage;
+  document.title = copy.pageTitle;
+  document.querySelector('[data-i18n-meta="description"]')?.setAttribute('content', copy.description);
+
+  document.querySelectorAll('[data-i18n]').forEach((element) => {
+    element.textContent = copy[element.dataset.i18n];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach((element) => {
+    element.innerHTML = copy[element.dataset.i18nHtml];
+  });
+  document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+    element.setAttribute('aria-label', copy[element.dataset.i18nAriaLabel]);
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach((element) => {
+    element.setAttribute('alt', copy[element.dataset.i18nAlt]);
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
+    element.setAttribute('placeholder', copy[element.dataset.i18nPlaceholder]);
+  });
+
+  languageToggle.dataset.language = nextLanguage;
+  languageToggle.setAttribute('aria-pressed', String(nextLanguage === 'uk'));
+  languageToggle.setAttribute('aria-label', copy.languageSwitch);
+  languageToggle.title = copy.languageSwitch;
+  const menuLabel = document.querySelector('.menu-button .sr-only');
+  const menuIsOpen = document.querySelector('.menu-button')?.getAttribute('aria-expanded') === 'true';
+  if (menuLabel) menuLabel.textContent = menuIsOpen ? copy.menuClose : copy.menuToggle;
+  updateMediaToggleLabel();
+
+  if (persist) {
+    try {
+      localStorage.setItem('peach-orchard-language', nextLanguage);
+    } catch {}
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', nextLanguage);
+      window.history.replaceState(window.history.state, '', url);
+    } catch {}
+  }
+};
+
+const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language];
+const browserLanguage = browserLanguages
+  .map(normalizeLanguage)
+  .find(Boolean) || 'en';
+let savedLanguage = browserLanguage;
+try {
+  const requestedLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+  const storedLanguage = normalizeLanguage(localStorage.getItem('peach-orchard-language'));
+  savedLanguage = requestedLanguage || storedLanguage || browserLanguage;
+} catch {}
+applyLanguage(savedLanguage, { persist: false });
+
+languageToggle?.addEventListener('click', () => {
+  applyLanguage(languageToggle.dataset.language === 'en' ? 'uk' : 'en');
+});
+
+const header = document.querySelector('[data-header]');
+const seasonJournal = document.querySelector('.season-journal');
+const seasonControls = seasonJournal.querySelector('[data-season-controls]');
+const seasonChoices = [...seasonControls.querySelectorAll('input')];
+const seasonPages = [...seasonJournal.querySelectorAll('[data-season-page]')];
+
+const showSeason = (season) => {
+  seasonJournal.dataset.season = season;
+  seasonChoices.forEach((choice) => { choice.checked = choice.value === season; });
+  seasonPages.forEach((page) => { page.hidden = page.dataset.seasonPage !== season; });
+};
+
+seasonControls.addEventListener('change', (event) => {
+  if (event.target.matches('input[name="orchard-season"]')) showSeason(event.target.value);
+});
+showSeason(seasonControls.querySelector('input:checked').value);
+seasonControls.hidden = false;
+
+const menuButton = document.querySelector('.menu-button');
+const nav = document.querySelector('.site-nav');
+
+const setMenuLabel = (isOpen) => {
+  const copy = translations[document.documentElement.lang] || translations.en;
+  menuButton?.querySelector('.sr-only')?.replaceChildren(isOpen ? copy.menuClose : copy.menuToggle);
+};
+
+const closeMenu = ({ restoreFocus = false } = {}) => {
+  const wasOpen = menuButton?.getAttribute('aria-expanded') === 'true';
+  menuButton?.setAttribute('aria-expanded', 'false');
+  nav?.classList.remove('is-open');
+  document.body.classList.remove('menu-open');
+  setMenuLabel(false);
+  if (restoreFocus && wasOpen) menuButton?.focus();
+};
+
+menuButton?.addEventListener('click', () => {
+  const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+  if (!willOpen) {
+    closeMenu();
+    return;
+  }
+
+  menuButton.setAttribute('aria-expanded', 'true');
+  nav.classList.add('is-open');
+  document.body.classList.add('menu-open');
+  setMenuLabel(true);
+  nav.querySelector('a, button')?.focus({ preventScroll: true });
+});
+
+nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', (event) => {
+  if (!nav?.classList.contains('is-open')) return;
+  if (event.key === 'Escape') {
+    closeMenu({ restoreFocus: true });
+    return;
+  }
+
+  if (event.key === 'Tab') {
+    const focusable = [...nav.querySelectorAll('a, button'), languageToggle, menuButton].filter(Boolean);
+    const first = focusable[0];
+    const last = focusable.at(-1);
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900 && nav?.classList.contains('is-open')) closeMenu();
+});
+
+const revealItems = [...document.querySelectorAll('.reveal')];
+if ('IntersectionObserver' in window && !reduceMotion) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.remove('is-pending');
+      entry.target.classList.add('is-visible');
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+
+  const resetObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const belowViewport = !entry.isIntersecting
+        && entry.rootBounds
+        && entry.boundingClientRect.top >= entry.rootBounds.bottom;
+
+      if (!belowViewport || !entry.target.classList.contains('is-visible')) return;
+      const target = entry.target;
+      target.classList.add('is-resetting');
+      target.classList.remove('is-visible');
+      target.classList.add('is-pending');
+      requestAnimationFrame(() => target.classList.remove('is-resetting'));
+    });
+  }, { threshold: 0 });
+
+  revealItems.forEach((item) => {
+    if (item.getBoundingClientRect().top < window.innerHeight * 0.93) {
+      item.classList.add('is-visible');
+    } else {
+      item.classList.add('is-pending');
+    }
+    revealObserver.observe(item);
+    resetObserver.observe(item);
+  });
+} else {
+  revealItems.forEach((item) => item.classList.add('is-visible'));
+}
+
+const progress = document.querySelector('.scroll-progress span');
+const heroImage = document.querySelector('.hero__media img');
+let ticking = false;
+
+const updateScrollEffects = () => {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  progress.style.transform = `scaleX(${ratio})`;
+
+  if (!reduceMotion && heroImage && window.scrollY < window.innerHeight * 1.15) {
+    heroImage.style.transform = `translate3d(0, ${window.scrollY * 0.11}px, 0) scale(1.03)`;
+  }
+  ticking = false;
+};
+
+window.addEventListener('scroll', () => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(updateScrollEffects);
+}, { passive: true });
+updateScrollEffects();
+
+const dialog = document.querySelector('.visit-dialog');
+const form = dialog?.querySelector('.visit-form');
+const dialogCopy = dialog?.querySelector('.dialog-copy');
+const success = dialog?.querySelector('.form-success');
+const formState = dialog?.querySelector('.dialog-form-state');
+let successFocusTimer;
+let dialogTrigger;
+
+const setDialogState = (state) => {
+  const showingSuccess = state === 'success';
+  dialog.dataset.state = state;
+  formState.toggleAttribute('inert', showingSuccess);
+  formState.setAttribute('aria-hidden', String(showingSuccess));
+  success.toggleAttribute('inert', !showingSuccess);
+  success.setAttribute('aria-hidden', String(!showingSuccess));
+};
+
+document.querySelectorAll('[data-open-visit]').forEach((button) => {
+  button.addEventListener('click', () => {
+    dialogTrigger = button;
+    closeMenu();
+    window.clearTimeout(successFocusTimer);
+    setDialogState('form');
+    form.reset();
+    dialog.showModal();
+    requestAnimationFrame(() => dialog.querySelector('input')?.focus());
+  });
+});
+
+dialog?.querySelectorAll('[data-close-dialog]').forEach((button) => {
+  button.addEventListener('click', () => dialog.close());
+});
+
+dialog?.addEventListener('click', (event) => {
+  if (event.target !== dialog) return;
+  const bounds = dialog.getBoundingClientRect();
+  const outsideDialog = event.clientX < bounds.left || event.clientX > bounds.right
+    || event.clientY < bounds.top || event.clientY > bounds.bottom;
+  if (outsideDialog) dialog.close();
+});
+
+dialog?.addEventListener('close', () => {
+  window.clearTimeout(successFocusTimer);
+  setDialogState('form');
+  // The mobile menu closes before opening the dialog, hiding its visit button.
+  const returnTarget = nav?.contains(dialogTrigger) && menuButton?.getClientRects().length
+    ? menuButton : dialogTrigger;
+  returnTarget?.focus({ preventScroll: true });
+  dialogTrigger = undefined;
+});
+
+form?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  setDialogState('success');
+  form.reset();
+  successFocusTimer = window.setTimeout(() => {
+    success.querySelector('button')?.focus();
+  }, reduceMotion ? 0 : 110);
+});
+
+const ambientVideos = [...document.querySelectorAll('video[data-video-src]')];
+
+const updateVideoPlayback = (video) => {
+  const shouldPlay = mediaPlaybackEnabled && !document.hidden && video.dataset.nearViewport === 'true';
+  if (!shouldPlay) {
+    video.pause();
+    return;
+  }
+
+  if (!video.hasAttribute('src')) video.src = video.dataset.videoSrc;
+  video.play().catch(() => {});
+};
+
+const updateVideosNearViewport = () => {
+  ambientVideos.forEach((video) => {
+    const bounds = video.getBoundingClientRect();
+    video.dataset.nearViewport = String(bounds.bottom >= -160 && bounds.top <= window.innerHeight + 160);
+    updateVideoPlayback(video);
+  });
+};
+updateVideosNearViewport();
+
+mediaToggle?.removeAttribute('hidden');
+mediaToggle?.addEventListener('click', () => {
+  mediaPlaybackEnabled = !mediaPlaybackEnabled;
+  updateMediaToggleLabel();
+  try {
+    if (mediaPlaybackEnabled) localStorage.removeItem('peach-orchard-media');
+    else localStorage.setItem('peach-orchard-media', 'paused');
+  } catch {}
+  ambientVideos.forEach(updateVideoPlayback);
+});
+
+if ('IntersectionObserver' in window) {
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      entry.target.dataset.nearViewport = String(entry.isIntersecting);
+      updateVideoPlayback(entry.target);
+    });
+  }, { rootMargin: '160px 0px' });
+  ambientVideos.forEach((video) => videoObserver.observe(video));
+} else {
+  window.addEventListener('scroll', updateVideosNearViewport, { passive: true });
+  window.addEventListener('resize', updateVideosNearViewport);
+}
+
+document.addEventListener('visibilitychange', () => {
+  ambientVideos.forEach(updateVideoPlayback);
+});
+
+document.querySelector('[data-year]').textContent = new Date().getFullYear();

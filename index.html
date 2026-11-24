@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Alex's portfolio of websites, networking labs, and documented troubleshooting.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Alex · Web and network projects">
+  <meta property="og:description" content="Five projects, from websites for people to networks and monitoring labs.">
+  <meta property="og:image" content="assets/workbench.webp">
+  <meta name="theme-color" content="#f7f7f2">
+  <link rel="icon" href="brand/b.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+  <noscript><style>.steps, .signal, .step-detail { display: none; }</style></noscript>
+  <title>Alex · Web and network projects</title>
+</head>
+<body id="top">
+  <a class="skip button-md" href="#main">Skip to content</a>
+  <header class="shell site-header">
+    <a class="brand title-3" href="#top" aria-label="Alex, back to top">
+      <img src="brand/b.svg" alt="" width="24" height="24"> Alex
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#direction">Direction</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="shell hero" aria-labelledby="intro">
+      <div class="hero-copy">
+        <p class="eyebrow caption-1">Alex / SpyderOrb</p>
+        <h1 class="heading-1" id="intro">I build for the web.<br>I learn by taking systems apart.</h1>
+        <p class="body-3 intro">I make websites for people and use network labs to understand what happens behind the page, especially when something fails.</p>
+        <a class="primary button-md" href="#work">Explore my work</a>
+      </div>
+      <figure class="hero-art">
+        <img src="assets/workbench.webp" srcset="assets/workbench-small.webp 640w, assets/workbench.webp 1120w"
+          sizes="(max-width: 47rem) calc(100vw - 32px), (max-width: 74rem) 43vw, 528px" width="1120" height="1120"
+          fetchpriority="high" alt="A lamp lights a notebook with a network sketch, a cobalt cable and a peach with leaves.">
+        <figcaption class="caption-2"><span>At the workbench</span><span>Web · Networks · Monitoring</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="shell section" id="work" aria-labelledby="work-title">
+      <div class="section-heading">
+        <h2 class="heading-2" id="work-title">Selected work</h2>
+        <p class="body-3">Five projects where I had to make a choice and check how it worked.</p>
+      </div>
+      <div class="work-grid">
+        <article class="project featured" aria-labelledby="zabbix-title">
+          <div class="project-copy">
+            <p class="eyebrow caption-1">Monitoring lab</p>
+            <h3 class="heading-3" id="zabbix-title">NOC Monitoring Lab</h3>
+            <p class="body-3">I monitored an Ubuntu target with Zabbix, tested six fault scenarios and documented what the checks observed during failure and recovery.</p>
+            <a class="text-link button-sm" href="https://github.com/SpyderOrb/NOC-Monitoring-Lab-Zabbix">View the lab on GitHub</a>
+          </div>
+          <div class="walkthrough" id="incident" aria-labelledby="incident-title">
+            <div class="incident-heading">
+              <h4 class="title-1" id="incident-title">From outage to recovery</h4>
+              <a class="caption-1 source" href="https://github.com/SpyderOrb/NOC-Monitoring-Lab-Zabbix/blob/main/docs/VALIDATION.md">MON‑01 evidence</a>
+            </div>
+            <p class="caption-2 incident-intro">Replay one recorded Nginx stop and restart. Times are UTC.</p>
+            <ol class="steps" aria-label="Incident timeline">
+              <li><button type="button" aria-pressed="true" data-step="0"><time>16:23:07</time><span>Service stops</span></button></li>
+              <li><button type="button" aria-pressed="false" data-step="1"><time>16:23:31</time><span>Problem opens</span></button></li>
+              <li><button type="button" aria-pressed="false" data-step="2"><time>16:24:24</time><span>Service restarts</span></button></li>
+              <li><button type="button" aria-pressed="false" data-step="3"><time>16:24:31</time><span>Problem clears</span></button></li>
+            </ol>
+            <div class="signal" data-state="pending" aria-hidden="true">
+              <span class="signal-node">Nginx</span>
+              <span class="signal-line"></span>
+              <span class="signal-node">HTTP check</span>
+              <span class="signal-line"></span>
+              <span class="signal-node">Zabbix event</span>
+            </div>
+            <div class="step-detail" aria-live="polite" aria-atomic="true">
+              <p class="title-3" id="step-title">Nginx is stopped</p>
+              <p class="caption-2" id="step-description">The stop command finishes on the target VM. Zabbix still needs a fresh HTTP check to observe the change.</p>
+            </div>
+            <noscript>
+              <p>16:23:07 Nginx stopped, 16:23:31 problem opened, 16:24:24 Nginx restarted, 16:24:31 Zabbix cleared the problem.</p>
+            </noscript>
+          </div>
+        </article>
+
+        <article class="project" aria-labelledby="hq-title">
+          <div class="project-copy">
+            <p class="eyebrow caption-1">Packet Tracer lab</p>
+            <h3 class="heading-4" id="hq-title">HQ + Branches</h3>
+            <p class="body-3">I connected a headquarters and two branches, then documented incidents involving VLANs, OSPF, DHCP relay and access rules.</p>
+            <a class="text-link button-sm" href="https://github.com/SpyderOrb/packettracer-big-proj">View the network lab</a>
+          </div>
+          <img class="project-image topology" src="assets/hq-topology.webp" alt="Logical topology for the headquarters, two branches and shared WAN." loading="lazy" width="920" height="716">
+        </article>
+
+        <article class="project" aria-labelledby="orchard-title">
+          <div class="project-copy">
+            <p class="eyebrow caption-1">Bilingual website concept</p>
+            <h3 class="heading-4" id="orchard-title">The Peach Plot</h3>
+            <p class="body-3">I made an English and Ukrainian site for a family orchard. A seasonal journal gives visitors a way to explore the year one chapter at a time.</p>
+            <div class="project-links">
+              <a class="primary button-md" href="demos/peach.html">Try The Peach Plot</a>
+              <a class="text-link button-sm" href="https://github.com/SpyderOrb/peach-orchard-website">View source</a>
+            </div>
+          </div>
+          <img class="project-image orchard" src="assets/peach-plot.webp" alt="Illustrative photograph from The Peach Plot project." loading="lazy" width="760" height="427">
+        </article>
+
+        <article class="project compact" aria-labelledby="music-title">
+          <div class="project-copy">
+            <p class="eyebrow caption-1">Live website</p>
+            <h3 class="heading-4" id="music-title">Sol Music Studio</h3>
+            <p class="body-3">I built a piano studio site that puts the information a prospective student needs in one place, from lessons and tuition to the inquiry form.</p>
+            <a class="text-link button-sm" href="https://solmusicstudio.com">Visit solmusicstudio.com</a>
+          </div>
+        </article>
+
+        <article class="project compact" aria-labelledby="academy-title">
+          <div class="project-copy">
+            <p class="eyebrow caption-1">Education website concept</p>
+            <h3 class="heading-4" id="academy-title">Packetcraft Academy</h3>
+            <p class="body-3">I turned subnetting into a small exercise you can try in the browser, with answer explanations and an animated lab topology.</p>
+            <div class="project-links">
+              <a class="primary button-md" href="demos/packetcraft.html">Try Packetcraft Academy</a>
+              <a class="text-link button-sm" href="https://github.com/SpyderOrb/packetcraft-academy">View source</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="approach" id="approach" aria-labelledby="approach-title">
+      <div class="shell section">
+        <h2 class="eyebrow caption-1" id="approach-title">How I work</h2>
+        <p class="heading-2 statement" data-reveal>Build something you can try.<br>Leave enough evidence to explain it.</p>
+        <div class="principles">
+          <div><h3 class="title-1">Start with the person using it</h3><p class="body-3">On a studio site the next step has to be clear. On the orchard site the same story needs to work in two languages.</p></div>
+          <div><h3 class="title-1">Follow the failure</h3><p class="body-3">In a lab I compare what the service does, what the monitor sees and what the event history can prove.</p></div>
+          <div><h3 class="title-1">Write down the result</h3><p class="body-3">I keep notes on what I changed, how I verified recovery and which checks still need to happen.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section direction" id="direction" aria-labelledby="direction-title">
+      <div>
+        <p class="eyebrow caption-1">What I’m working toward</p>
+        <h2 class="heading-2" id="direction-title">Where I want to go</h2>
+      </div>
+      <div>
+        <p class="title-1">I want to grow into technical support or NOC operations, where I can learn to diagnose real incidents and help keep services reliable.</p>
+        <p class="body-3">I’d like to keep building websites alongside that work. I’m drawn to projects where I can see who benefits and take responsibility for what I build.</p>
+        <p class="draft caption-1">Draft wording for Alex to confirm.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <a class="brand title-3" href="#top"><img src="brand/b.svg" alt="" width="20" height="20"> Alex</a>
+    <a class="text-link button-sm" href="https://github.com/SpyderOrb">GitHub profile</a>
+  </footer>
+</body>
+</html>
