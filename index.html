@@ -93,7 +93,7 @@
           </div>
         </article>
 
-        <article class="project" aria-labelledby="hq-title">
+        <article class="project project--visual" aria-labelledby="hq-title">
           <div class="project-copy">
             <p class="eyebrow caption-1">Packet Tracer lab</p>
             <h3 class="heading-4" id="hq-title">HQ + Branches</h3>
@@ -105,20 +105,28 @@
             </details>
             <a class="text-link button-sm" href="https://github.com/SpyderOrb/packettracer-big-proj">View the network lab</a>
           </div>
-          <img class="project-image topology" src="assets/hq-topology.webp" alt="Logical topology for the headquarters, two branches and shared WAN." loading="lazy" width="920" height="716">
+          <div class="project-visual">
+            <img class="topology" src="assets/hq-topology.webp" alt="Logical topology for the headquarters, two branches and shared WAN." loading="lazy" width="920" height="716">
+          </div>
         </article>
 
-        <article class="project" aria-labelledby="orchard-title">
+        <article class="project project--visual" aria-labelledby="orchard-title">
           <div class="project-copy">
             <p class="eyebrow caption-1">Bilingual website concept</p>
             <h3 class="heading-4" id="orchard-title">The Peach Plot</h3>
             <p class="body-3">I built an English and Ukrainian site for a family orchard. Choose a chapter in the seasonal journal, then switch languages. The site keeps the selected chapter in view.</p>
             <div class="project-links">
-              <a class="primary button-md" href="demos/peach.html">Try The Peach Plot</a>
+              <button class="primary button-md orchard-preview-toggle" type="button" aria-controls="orchard-preview" aria-expanded="false" hidden>Preview here</button>
+              <a class="text-link button-sm" href="demos/peach.html">Open full demo</a>
               <a class="text-link button-sm" href="https://github.com/SpyderOrb/peach-orchard-website">The Peach Plot source</a>
             </div>
           </div>
-          <img class="project-image orchard" src="assets/peach-plot.webp" alt="Illustrative photograph from The Peach Plot project." loading="lazy" width="760" height="427">
+          <div class="project-visual orchard-preview" id="orchard-preview">
+            <img class="orchard-cover" src="assets/peach-plot.webp" alt="A path through the peach orchard at sunset." loading="lazy" width="760" height="427">
+            <template>
+              <iframe src="demos/peach-plot/index.html" title="The Peach Plot interactive website" allow="autoplay"></iframe>
+            </template>
+          </div>
         </article>
 
         <article class="project compact" aria-labelledby="music-title">

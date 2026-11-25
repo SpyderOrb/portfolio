@@ -1,3 +1,24 @@
+const orchardPreview = document.querySelector("#orchard-preview");
+const orchardToggle = document.querySelector(".orchard-preview-toggle");
+const orchardCover = orchardPreview.querySelector(".orchard-cover");
+const orchardFrame = orchardPreview.querySelector("template");
+
+orchardToggle.hidden = false;
+orchardToggle.addEventListener("click", () => {
+  const opening = orchardToggle.getAttribute("aria-expanded") === "false";
+
+  if (opening) {
+    orchardPreview.append(orchardFrame.content.cloneNode(true));
+  } else {
+    orchardPreview.querySelector("iframe").remove();
+  }
+
+  orchardPreview.toggleAttribute("data-active", opening);
+  orchardCover.hidden = opening;
+  orchardToggle.setAttribute("aria-expanded", String(opening));
+  orchardToggle.textContent = opening ? "Close preview" : "Preview here";
+});
+
 const incident = document.querySelector("#incident");
 const steps = [...incident.querySelectorAll("[data-step]")];
 const signal = incident.querySelector(".signal");
