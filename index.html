@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,8 +7,14 @@
   <meta name="description" content="Alex's portfolio of websites, networking labs, and documented troubleshooting.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Alex · Web and network projects">
-  <meta property="og:description" content="Five projects, from websites for people to networks and monitoring labs.">
-  <meta property="og:image" content="assets/workbench.webp">
+  <meta property="og:description" content="Websites you can try, plus network and monitoring labs with documented troubleshooting.">
+  <meta property="og:url" content="https://portfolio.alllplll.workers.dev/">
+  <meta property="og:image" content="https://portfolio.alllplll.workers.dev/assets/workbench.webp">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="1120">
+  <meta property="og:image:height" content="1120">
+  <meta property="og:image:alt" content="A lamp lights a notebook with a network sketch, a cobalt cable and a peach with leaves.">
+  <meta name="twitter:card" content="summary">
   <meta name="theme-color" content="#f7f7f2">
   <link rel="icon" href="brand/ap-favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
@@ -48,14 +54,14 @@
     <section class="shell section" id="work" aria-labelledby="work-title">
       <div class="section-heading">
         <h2 class="heading-2" id="work-title">Selected work</h2>
-        <p class="body-3">Five projects where I had to make a choice and check how it worked.</p>
+        <p class="body-3">Try the websites, replay a monitoring incident or read how I diagnosed a network fault.</p>
       </div>
       <div class="work-grid">
         <article class="project featured" aria-labelledby="zabbix-title">
           <div class="project-copy">
             <p class="eyebrow caption-1">Monitoring lab</p>
             <h3 class="heading-3" id="zabbix-title">NOC Monitoring Lab</h3>
-            <p class="body-3">I monitored an Ubuntu target with Zabbix, tested six fault scenarios and documented what the checks observed during failure and recovery.</p>
+            <p class="body-3">I set up Zabbix to monitor an Ubuntu target, then recorded what changed across six lab scenarios, from a stopped HTTP service to stale queue telemetry.</p>
             <a class="text-link button-sm" href="https://github.com/SpyderOrb/NOC-Monitoring-Lab-Zabbix">View the lab on GitHub</a>
           </div>
           <div class="walkthrough" id="incident" aria-labelledby="incident-title">
@@ -63,7 +69,7 @@
               <h4 class="title-1" id="incident-title">From outage to recovery</h4>
               <a class="caption-1 source" href="https://github.com/SpyderOrb/NOC-Monitoring-Lab-Zabbix/blob/main/docs/VALIDATION.md">MON‑01 evidence</a>
             </div>
-            <p class="caption-2 incident-intro">Replay one recorded Nginx stop and restart. Times are UTC.</p>
+            <p class="caption-2 incident-intro">Replay one recorded Nginx stop and restart. The event opened 24 seconds after the stop and cleared 7 seconds after the restart. Times are UTC.</p>
             <ol class="steps" aria-label="Incident timeline">
               <li><button type="button" aria-pressed="true" data-step="0"><time>16:23:07</time><span>Service stops</span></button></li>
               <li><button type="button" aria-pressed="false" data-step="1"><time>16:23:31</time><span>Problem opens</span></button></li>
@@ -91,7 +97,12 @@
           <div class="project-copy">
             <p class="eyebrow caption-1">Packet Tracer lab</p>
             <h3 class="heading-4" id="hq-title">HQ + Branches</h3>
-            <p class="body-3">I connected a headquarters and two branches, then documented incidents involving VLANs, OSPF, DHCP relay and access rules.</p>
+            <p class="body-3">I connected a headquarters and two branches in Cisco Packet Tracer and documented faults involving VLANs, OSPF, DHCP relay and access rules.</p>
+            <details class="project-evidence">
+              <summary class="button-sm">How I traced a missing DHCP lease</summary>
+              <p class="body-3">I forced a fresh lease request because an existing lease could hide the fault. The branch client failed to get an address. After restoring the missing DHCP relay, I verified a new lease and loaded the intranet page from that client.</p>
+              <a class="text-link button-sm" href="https://github.com/SpyderOrb/packettracer-big-proj/tree/main/incidents/IR-003">Read the incident report</a>
+            </details>
             <a class="text-link button-sm" href="https://github.com/SpyderOrb/packettracer-big-proj">View the network lab</a>
           </div>
           <img class="project-image topology" src="assets/hq-topology.webp" alt="Logical topology for the headquarters, two branches and shared WAN." loading="lazy" width="920" height="716">
@@ -101,10 +112,10 @@
           <div class="project-copy">
             <p class="eyebrow caption-1">Bilingual website concept</p>
             <h3 class="heading-4" id="orchard-title">The Peach Plot</h3>
-            <p class="body-3">I made an English and Ukrainian site for a family orchard. A seasonal journal gives visitors a way to explore the year one chapter at a time.</p>
+            <p class="body-3">I built an English and Ukrainian site for a family orchard. Choose a chapter in the seasonal journal, then switch languages. The site keeps the selected chapter in view.</p>
             <div class="project-links">
               <a class="primary button-md" href="demos/peach.html">Try The Peach Plot</a>
-              <a class="text-link button-sm" href="https://github.com/SpyderOrb/peach-orchard-website">View source</a>
+              <a class="text-link button-sm" href="https://github.com/SpyderOrb/peach-orchard-website">The Peach Plot source</a>
             </div>
           </div>
           <img class="project-image orchard" src="assets/peach-plot.webp" alt="Illustrative photograph from The Peach Plot project." loading="lazy" width="760" height="427">
@@ -114,7 +125,7 @@
           <div class="project-copy">
             <p class="eyebrow caption-1">Live website</p>
             <h3 class="heading-4" id="music-title">Sol Music Studio</h3>
-            <p class="body-3">I built a piano studio site that puts the information a prospective student needs in one place, from lessons and tuition to the inquiry form.</p>
+            <p class="body-3">I built a piano studio site that brings lessons, tuition and inquiries together. The inquiry form uses Cloudflare Turnstile and Google Apps Script to route requests to the studio.</p>
             <a class="text-link button-sm" href="https://solmusicstudio.com">Visit solmusicstudio.com</a>
           </div>
         </article>
@@ -123,10 +134,10 @@
           <div class="project-copy">
             <p class="eyebrow caption-1">Education website concept</p>
             <h3 class="heading-4" id="academy-title">Packetcraft Academy</h3>
-            <p class="body-3">I turned subnetting into a small exercise you can try in the browser, with answer explanations and an animated lab topology.</p>
+            <p class="body-3">I built five subnetting exercises you can try in the browser. Each one lets you check your answer and see how the address range was calculated.</p>
             <div class="project-links">
               <a class="primary button-md" href="demos/packetcraft.html">Try Packetcraft Academy</a>
-              <a class="text-link button-sm" href="https://github.com/SpyderOrb/packetcraft-academy">View source</a>
+              <a class="text-link button-sm" href="https://github.com/SpyderOrb/packetcraft-academy">Packetcraft Academy source</a>
             </div>
           </div>
         </article>

@@ -130,6 +130,21 @@ nav a:hover, nav a[aria-current] { background: var(--panel); color: var(--blue-d
   border-radius: 1rem;
 }
 .project-copy { display: grid; justify-items: start; align-content: start; gap: 12px; padding: 32px; }
+.project-evidence {
+  width: 100%;
+  padding-inline: 12px;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  background: var(--paper);
+}
+.project-evidence summary {
+  min-block-size: 44px;
+  padding-block: 12px;
+  color: var(--blue-dark);
+  cursor: pointer;
+}
+.project-evidence summary:hover { text-decoration: underline; }
+.project-evidence p { margin-block: 4px; }
 .text-link { display: inline-flex; align-items: center; min-block-size: 44px; color: var(--blue-dark); }
 .text-link:hover, .source:hover { text-decoration-thickness: 2px; }
 .featured {
